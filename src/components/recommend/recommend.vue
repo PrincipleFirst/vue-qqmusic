@@ -13,6 +13,9 @@
             </slider>
           </div>
         </div>
+        <div class="ic-guroup">
+
+        </div>
         <div class="recommend-list">
           <h1 class="list-title">热门推荐</h1>
           <ul>
@@ -167,4 +170,12 @@
         width: 100%
         top: 50%
         transform: translateY(-50%)
+      .ic-guroup
+        display flex
+        height 135px
+        background #333
+        font-size $font-size-medium
+        .tab-item
+          flex 1
+          text-align center
 </style>
