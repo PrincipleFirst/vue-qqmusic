@@ -11,10 +11,12 @@
         <span class="tab-link">发现</span>
       </router-link>
     </div>
-    <router-link tag="div" class="search" to="/search">
-      <i class="icon-search"></i>
-      <span class="search-font">搜索</span>
-    </router-link>
+    <div class="search-box">
+      <router-link tag="div" class="search" to="/search">
+        <i class="icon-search"></i>
+        <span class="search-font">搜索</span>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -49,19 +51,22 @@
             color $color-theme
             font-size $font-size-large
             font-weight 600
-    .search
-      display flex
-      justify-content center
-      align-items center
-      box-sizing border-box
-      width 100%
-      height 38px
-      background  #29b16c
-      .icon-search
-        font-size 24px
-        color $color-theme
-      .search-font
-        letter-spacing 2px
-        font-size $font-size-medium-x
-        color $color-theme
+    .search-box
+      margin 0 8px
+      .search
+        display flex
+        justify-content center
+        align-items center
+        box-sizing border-box
+        border-radius 6px
+        width 100%
+        height 38px
+        background #29b16c
+        .icon-search
+          font-size 24px
+          color $color-theme
+        .search-font
+          letter-spacing 2px
+          font-size $font-size-medium-x
+          color $color-theme
 </style>

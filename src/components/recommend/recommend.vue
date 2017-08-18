@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="recommend-list">
-          <h1 class="list-title">热门歌单推荐</h1>
+          <h1 class="list-title">热门推荐</h1>
           <ul>
             <li @click="selectItem(item)" v-for="item in discList" class="item">
               <div class="icon">
@@ -139,7 +139,7 @@
           line-height: 65px
           text-align: center
           font-size: $font-size-medium
-          color: $color-theme
+          color: $color-text
         .item
           display: flex
           box-sizing: border-box
@@ -161,7 +161,7 @@
               margin-bottom: 10px
               color: $color-text
             .desc
-              color: $color-text-d
+              color: $color-text
       .loading-container
         position: absolute
         width: 100%
