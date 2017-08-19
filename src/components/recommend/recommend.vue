@@ -14,7 +14,16 @@
           </div>
         </div>
         <div class="ic-guroup">
-
+          <div class="ic-guroup-row">
+            <div class="ic-item"><i class="micon-geshou"></i><span class="ic-font">歌手</span></div>
+            <div class="ic-item"><i class="micon-paihang"></i><span class="ic-font">排行</span></div>
+            <div class="ic-item"><i class="micon-diantai"></i><span class="ic-font">电台</span></div>
+          </div>
+          <div class="ic-guroup-row">
+            <div class="ic-item"><i class="micon-leimupinleifenleileibie"></i><span class="ic-font">分类歌单</span></div>
+            <div class="ic-item"><i class="micon-shipin"></i><span class="ic-font">视频MV</span></div>
+            <div class="ic-item"><i class="micon-zhuanjiguangpan"></i><span class="ic-font">数字专辑</span></div>
+          </div>
         </div>
         <div class="recommend-list">
           <h1 class="list-title">热门推荐</h1>
@@ -171,11 +180,22 @@
         top: 50%
         transform: translateY(-50%)
       .ic-guroup
-        display flex
-        height 135px
-        background #333
-        font-size $font-size-medium
-        .tab-item
-          flex 1
-          text-align center
+        display table
+        width 100%
+        height 136px
+        padding-left 15px
+        .ic-guroup-row
+          display table-row
+          font-size $font-size-medium
+          height 68px
+          .ic-item
+            display table-cell
+            padding-left 15px
+            vertical-align middle
+          [class^="micon-"]
+            font-size 24px
+            color $color-theme-background
+          .ic-font
+            font-size $font-size-medium-x
+            color $color-text
 </style>
