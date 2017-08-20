@@ -15,18 +15,18 @@
         </div>
         <div class="ic-guroup">
           <div class="ic-guroup-row">
-            <div class="ic-item"><i class="micon-geshou"></i><span class="ic-font">歌手</span></div>
-            <div class="ic-item"><i class="micon-paihang"></i><span class="ic-font">排行</span></div>
-            <div class="ic-item"><i class="micon-diantai"></i><span class="ic-font">电台</span></div>
+            <div class="ic-item"><i class="micon geshou"></i><span class="ic-font">歌手</span></div>
+            <div class="ic-item"><i class="micon paihang"></i><span class="ic-font">排行</span></div>
+            <div class="ic-item"><i class="micon diantai"></i><span class="ic-font">电台</span></div>
           </div>
           <div class="ic-guroup-row">
-            <div class="ic-item"><i class="micon-leimupinleifenleileibie"></i><span class="ic-font">分类歌单</span></div>
-            <div class="ic-item"><i class="micon-shipin"></i><span class="ic-font">视频MV</span></div>
-            <div class="ic-item"><i class="micon-zhuanjiguangpan"></i><span class="ic-font">数字专辑</span></div>
+            <div class="ic-item"><i class="micon fenlei"></i><span class="ic-font">分类歌单</span></div>
+            <div class="ic-item"><i class="micon shipin"></i><span class="ic-font">视频MV</span></div>
+            <div class="ic-item"><i class="micon zhuanji"></i><span class="ic-font">数字专辑</span></div>
           </div>
         </div>
         <div class="recommend-list">
-          <h1 class="list-title">热门推荐</h1>
+          <h1 class="list-title">热门推荐<span class="list-button">&nbsp;&nbsp;&nbsp;&nbsp;</span></h1>
           <ul>
             <li @click="selectItem(item)" v-for="item in discList" class="item">
               <div class="icon">
@@ -124,66 +124,77 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+  @import "~common/stylus/mixin"
 
   .recommend
-    position: fixed
-    width: 100%
-    top: 88px
-    bottom: 0
+    position fixed
+    width 100%
+    top 88px
+    bottom 0
     .recommend-content
-      height: 100%
-      overflow: hidden
+      height 100%
+      overflow hidden
       .slider-wrapper
-        position: relative
-        width: 100%
-        height: 0
-        padding-top: 40%
-        overflow: hidden
+        position relative
+        width 100%
+        height 0
+        padding-top 40%
+        overflow hidden
         .slider-content
-          position: absolute
-          top: 0
-          left: 0
-          width: 100%
-          height: 100%
+          position absolute
+          top 0
+          left 0
+          width 100%
+          height 100%
       .recommend-list
         .list-title
-          height: 65px
-          line-height: 65px
-          text-align: center
-          font-size: $font-size-medium
-          color: $color-text
+          height 40px
+          line-height 40px
+          text-align center
+          font-size 22px
+          color $color-text
+          .list-button
+            display inline-block
+            position absolute
+            right 17px
+            height 40px
+            width 40px
+            background-image url(lefta.png)
+            background-position center
+            background-size 26px 26px
+            background-repeat no-repeat
         .item
-          display: flex
-          box-sizing: border-box
-          align-items: center
-          padding: 0 20px 20px 20px
+          display flex
+          box-sizing border-box
+          align-items center
+          padding 0 20px 20px 20px
           .icon
-            flex: 0 0 60px
-            width: 60px
-            padding-right: 20px
+            flex 0 0 60px
+            width 60px
+            padding-right 20px
           .text
-            display: flex
-            flex-direction: column
-            justify-content: center
-            flex: 1
-            line-height: 20px
-            overflow: hidden
-            font-size: $font-size-medium
+            display flex
+            flex-direction column
+            justify-content center
+            flex 1
+            line-height 20px
+            overflow hidden
+            font-size $font-size-medium
             .name
-              margin-bottom: 10px
-              color: $color-text
+              margin-bottom 10px
+              color $color-text
             .desc
-              color: $color-text
+              color $color-text
       .loading-container
-        position: absolute
-        width: 100%
-        top: 50%
-        transform: translateY(-50%)
+        position absolute
+        width 100%
+        top 50%
+        transform translateY(-50%)
       .ic-guroup
         display table
         width 100%
         height 136px
-        padding-left 15px
+        padding-left 6px
         .ic-guroup-row
           display table-row
           font-size $font-size-medium
@@ -192,10 +203,25 @@
             display table-cell
             padding-left 15px
             vertical-align middle
-          [class^="micon-"]
-            font-size 24px
-            color $color-theme-background
-          .ic-font
-            font-size $font-size-medium-x
-            color $color-text
+            .micon
+              display inline-block
+              vertical-align middle
+              width 28px
+              height 28px
+              &.geshou
+                iconImg('geshou.png')
+              &.paihang
+                iconImg('paihang.png')
+              &.diantai
+                iconImg('diantai.png')
+              &.fenlei
+                iconImg('fenlei.png')
+              &.shipin
+                iconImg('shipin.png')
+              &.zhuanji
+                iconImg('zhuanji.png')
+            .ic-font
+              margin-left 7px
+              font-size $font-size-medium-x
+              color $color-text
 </style>
