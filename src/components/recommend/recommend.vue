@@ -156,7 +156,7 @@
           .list-button
             display inline-block
             position absolute
-            right 17px
+            right 15px
             height 40px
             width 40px
             background-image url(lefta.png)
