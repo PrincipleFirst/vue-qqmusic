@@ -46,7 +46,7 @@
         .tab-link
           color $color-theme
         &.router-link-active
-          border-radius 55px
+          border-radius 50%
           background #29b16c
           .tab-link
             color $color-theme
