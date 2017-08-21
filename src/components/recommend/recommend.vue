@@ -26,15 +26,15 @@
           </div>
         </div>
         <div class="recommend-list">
-          <h1 class="list-title">热门推荐<span class="list-button">&nbsp;&nbsp;&nbsp;&nbsp;</span></h1>
-          <ul>
-            <li @click="selectItem(item)" v-for="item in discList" class="item">
-              <div class="icon">
-                <img width="60" height="60" v-lazy="item.imgurl">
-              </div>
-              <div class="text">
-                <h2 class="name" v-html="item.creator.name"></h2>
-                <p class="desc" v-html="item.dissname"></p>
+          <h2 class="list-title"><span class="list-title-text">热门推荐</span><a class="list-button">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </h2>
+          <ul class="album_list">
+            <li @click="selectItem(item)" v-for="(item, index) in discList" v-if="index<=5" class="item">
+              <div class="album_list_box">
+                <div class="icon">
+                  <img class="album_img" v-lazy="item.imgurl">
+                  <h3 class="desc" v-html="item.dissname"></h3>
+                </div>
               </div>
             </li>
           </ul>
@@ -52,37 +52,37 @@
   import Slider from 'base/slider/slider'
   import Loading from 'base/loading/loading'
   import Scroll from 'base/scroll/scroll'
-  import {getRecommend, getDiscList} from 'api/recommend'
-  import {playlistMixin} from 'common/js/mixin'
-  import {ERR_OK} from 'api/config'
-  import {mapMutations} from 'vuex'
+  import { getRecommend, getDiscList } from 'api/recommend'
+  import { playlistMixin } from 'common/js/mixin'
+  import { ERR_OK } from 'api/config'
+  import { mapMutations } from 'vuex'
 
   export default {
     mixins: [playlistMixin],
-    data() {
+    data () {
       return {
         recommends: [],
         discList: []
       }
     },
-    created() {
+    created () {
       this._getRecommend()
 
       this._getDiscList()
     },
-    activated() {
+    activated () {
       setTimeout(() => {
         this.$refs.slider && this.$refs.slider.refresh()
       }, 20)
     },
     methods: {
-      handlePlaylist(playlist) {
+      handlePlaylist (playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
 
         this.$refs.recommend.style.bottom = bottom
         this.$refs.scroll.refresh()
       },
-      loadImage() {
+      loadImage () {
         if (!this.checkloaded) {
           this.checkloaded = true
           setTimeout(() => {
@@ -90,20 +90,20 @@
           }, 20)
         }
       },
-      selectItem(item) {
+      selectItem (item) {
         this.$router.push({
           path: `/recommend/${item.dissid}`
         })
         this.setDisc(item)
       },
-      _getRecommend() {
+      _getRecommend () {
         getRecommend().then((res) => {
           if (res.code === ERR_OK) {
             this.recommends = res.data.slider
           }
         })
       },
-      _getDiscList() {
+      _getDiscList () {
         getDiscList().then((res) => {
           if (res.code === ERR_OK) {
             this.discList = res.data.list
@@ -129,7 +129,7 @@
   .recommend
     position fixed
     width 100%
-    top 88px
+    top 80px
     bottom 0
     .recommend-content
       height 100%
@@ -148,43 +148,67 @@
           height 100%
       .recommend-list
         .list-title
-          height 40px
-          line-height 40px
+          position relative
+          padding 0 40px
+          height 55px
+          line-height 55px
           text-align center
-          font-size 22px
           color $color-text
+          .list-title-text
+            margin-left 5px
+            overflow hidden
+            line-height 1.2
+            white-space nowrap
+            letter-spacing 5px
+            font-size 18px
           .list-button
-            display inline-block
             position absolute
+<<<<<<< HEAD
             right 15px
             height 40px
             width 40px
+=======
+            top 0
+            right 0
+            height 100%
+            width 50px
+>>>>>>> cd66dd0d82719e2000716626a94949cfaaef9e23
             background-image url(lefta.png)
             background-position center
-            background-size 26px 26px
+            background-size 20px 20px
             background-repeat no-repeat
-        .item
-          display flex
-          box-sizing border-box
-          align-items center
-          padding 0 20px 20px 20px
-          .icon
-            flex 0 0 60px
-            width 60px
-            padding-right 20px
-          .text
-            display flex
-            flex-direction column
-            justify-content center
-            flex 1
-            line-height 20px
-            overflow hidden
-            font-size $font-size-medium
-            .name
-              margin-bottom 10px
-              color $color-text
-            .desc
-              color $color-text
+        .album_list
+          overflow hidden
+          margin 0 -1px
+          .album_list_box
+            margin 0 1px
+          .item
+            position relative
+            float left
+            width 33.3%
+            margin-bottom 10px
+            .icon
+              position relative
+              overflow hidden
+              display block
+              padding-top 100%
+              .album_img
+                position absolute
+                top 0
+                left 0
+                width 100%
+              .desc
+                -webkit-box-orient vertical
+                -webkit-line-clamp 2
+                height 36px
+                color $color-text
+                font-size $font-size-small
+                font-weight 400
+                margin 5px 8px 0 0
+                overflow hidden
+                white-space normal
+                text-overflow ellipsis
+                line-height 16px
       .loading-container
         position absolute
         width 100%
@@ -194,7 +218,7 @@
         display table
         width 100%
         height 136px
-        padding-left 6px
+        /*padding-left 6px*/
         .ic-guroup-row
           display table-row
           font-size $font-size-medium
@@ -222,6 +246,5 @@
                 iconImg('zhuanji.png')
             .ic-font
               margin-left 7px
-              font-size $font-size-medium-x
               color $color-text
 </style>

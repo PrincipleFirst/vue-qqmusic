@@ -30,7 +30,7 @@
 
   .m-header
     position relative
-    height 88px
+    height 80px
     text-align center
     color $color-theme
     background $color-theme-background
@@ -44,9 +44,10 @@
         flex 1
         text-align center
         .tab-link
-          padding-bottom 5px
           color $color-theme
         &.router-link-active
+          border-radius 55px
+          background #29b16c
           .tab-link
             color $color-theme
             font-size $font-size-large
@@ -60,7 +61,7 @@
         box-sizing border-box
         border-radius 6px
         width 100%
-        height 38px
+        height 30px
         background #29b16c
         .icon-search
           font-size 24px
