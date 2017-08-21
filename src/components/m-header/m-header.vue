@@ -30,7 +30,7 @@
 
   .m-header
     position relative
-    height 88px
+    height 80px
     text-align center
     color $color-theme
     background $color-theme-background
@@ -60,7 +60,7 @@
         box-sizing border-box
         border-radius 6px
         width 100%
-        height 38px
+        height 30px
         background #29b16c
         .icon-search
           font-size 24px
