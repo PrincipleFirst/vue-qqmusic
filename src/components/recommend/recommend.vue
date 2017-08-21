@@ -163,16 +163,10 @@
             font-size 18px
           .list-button
             position absolute
-<<<<<<< HEAD
-            right 15px
-            height 40px
-            width 40px
-=======
             top 0
             right 0
             height 100%
             width 50px
->>>>>>> cd66dd0d82719e2000716626a94949cfaaef9e23
             background-image url(lefta.png)
             background-position center
             background-size 20px 20px
