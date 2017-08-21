@@ -44,9 +44,10 @@
         flex 1
         text-align center
         .tab-link
-          padding-bottom 5px
           color $color-theme
         &.router-link-active
+          border-radius 55px
+          background #29b16c
           .tab-link
             color $color-theme
             font-size $font-size-large

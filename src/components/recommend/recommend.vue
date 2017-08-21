@@ -202,6 +202,7 @@
                 overflow hidden
                 white-space normal
                 text-overflow ellipsis
+                line-height 16px
       .loading-container
         position absolute
         width 100%
