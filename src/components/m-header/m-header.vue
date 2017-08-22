@@ -1,6 +1,6 @@
 <template>
   <div class="m-header">
-    <div class="tab">
+    <div class="tab" ref="tab">
       <router-link tag="div" class="tab-item" to="/singer">
         <span class="tab-link">我的</span>
       </router-link>
@@ -21,7 +21,20 @@
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  export default {
+    mounted() {
+      setTimeout(() => {
+        this.test()
+      }, 200)
+    },
+    methods: {
+      test() {
+        let el = this.$refs.tab
+        var currentTab = el.getElementsByClassName('router-link-active')[0]
+        console.log(currentTab.clientWidth)
+      }
+    }
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
