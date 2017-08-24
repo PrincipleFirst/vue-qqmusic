@@ -25,6 +25,11 @@
 
 <script type="text/ecmascript-6">
   export default {
+    data() {
+      return {
+        currentIndex: 0
+      }
+    },
     mounted () {
       setTimeout(() => {
         this.test()
@@ -35,7 +40,7 @@
         let el = document.getElementById('tab')
         let diameter = Math.floor(el.clientWidth / 3)
         let tabItems = el.getElementsByClassName('tab-animation')
-        let forEach = Array.prototype.forEach
+        var forEach = Array.prototype.forEach
         forEach.call(tabItems, function (item) {
           item.style.width = `${diameter}px`
           item.style.height = `${diameter}px`
@@ -75,7 +80,6 @@
           .tab-link
             color $color-theme
             font-size $font-size-large
-            font-weight 600
             z-index 11
     .search-box
       position relative
