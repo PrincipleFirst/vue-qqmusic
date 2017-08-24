@@ -1,13 +1,16 @@
 <template>
   <div class="m-header">
-    <div class="tab" ref="tab">
+    <div class="tab" id="tab">
       <router-link tag="div" class="tab-item" to="/singer">
+        <div class="tab-animation"></div>
         <span class="tab-link">我的</span>
       </router-link>
       <router-link tag="div" class="tab-item" to="/recommend">
+        <div class="tab-animation"></div>
         <span class="tab-link">音乐馆</span>
       </router-link>
       <router-link tag="div" class="tab-item" to="/rank">
+        <div class="tab-animation"></div>
         <span class="tab-link">发现</span>
       </router-link>
     </div>
@@ -22,16 +25,22 @@
 
 <script type="text/ecmascript-6">
   export default {
-    mounted() {
+    mounted () {
       setTimeout(() => {
         this.test()
-      }, 200)
+      }, 20)
     },
     methods: {
-      test() {
-        let el = this.$refs.tab
-        var currentTab = el.getElementsByClassName('router-link-active')[0]
-        console.log(currentTab.clientWidth)
+      test () {
+        let el = document.getElementById('tab')
+        let diameter = Math.floor(el.clientWidth / 3)
+        let tabItems = el.getElementsByClassName('tab-animation')
+        let forEach = Array.prototype.forEach
+        forEach.call(tabItems, function (item) {
+          item.style.width = `${diameter}px`
+          item.style.height = `${diameter}px`
+          item.style.top = `-${diameter / 2 - 22}px`
+        })
       }
     }
   }
@@ -49,6 +58,8 @@
     background $color-theme-background
     font-size 0
     .tab
+      position relative
+      overflow hidden
       display flex
       height 44px
       line-height 44px
@@ -57,15 +68,17 @@
         flex 1
         text-align center
         .tab-link
+          position relative
           color $color-theme
+          z-index 11
         &.router-link-active
-          border-radius 50%
-          background #29b16c
           .tab-link
             color $color-theme
             font-size $font-size-large
             font-weight 600
+            z-index 11
     .search-box
+      position relative
       margin 0 8px
       .search
         display flex
@@ -83,4 +96,10 @@
           letter-spacing 2px
           font-size $font-size-medium-x
           color $color-theme
+
+  .tab-animation
+    position absolute
+    border-radius 50%
+    background rgb(41, 177, 108)
+    transition all .4s linear
 </style>

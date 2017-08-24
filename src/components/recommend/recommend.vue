@@ -135,7 +135,6 @@
       height 100%
       overflow hidden
       .slider-wrapper
-        position relative
         width 100%
         height 0
         padding-top 40%
