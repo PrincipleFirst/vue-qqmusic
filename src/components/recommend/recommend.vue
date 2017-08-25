@@ -1,51 +1,65 @@
 <template>
-  <div class="recommend" ref="recommend">
-    <scroll ref="scroll" class="recommend-content" :data="discList">
-      <div>
-        <div v-if="recommends.length" class="slider-wrapper">
-          <div class="slider-content">
-            <slider ref="slider">
-              <div v-for="item in recommends">
-                <a :href="item.linkUrl">
-                  <img class="needsclick" @load="loadImage" :src="item.picUrl">
-                </a>
-              </div>
-            </slider>
-          </div>
-        </div>
-        <div class="ic-guroup">
-          <div class="ic-guroup-row">
-            <div class="ic-item"><div class="ic-item-container"><i class="micon geshou"></i><span class="ic-font">歌手</span></div></div>
-            <div class="ic-item"><div class="ic-item-container"><i class="micon paihang"></i><span class="ic-font">排行</span></div></div>
-            <div class="ic-item"><div class="ic-item-container"><i class="micon diantai"></i><span class="ic-font">电台</span></div></div>
-          </div>
-          <div class="ic-guroup-row">
-            <div class="ic-item"><div class="ic-item-container"><i class="micon fenlei"></i><span class="ic-font">分类歌单</span></div></div>
-            <div class="ic-item"><div class="ic-item-container"><i class="micon shipin"></i><span class="ic-font">视频MV</span></div></div>
-            <div class="ic-item"><div class="ic-item-container"><i class="micon zhuanji"></i><span class="ic-font">数字专辑</span></div></div>
-          </div>
-        </div>
-        <div class="recommend-list">
-          <h2 class="list-title"><span class="list-title-text">热门推荐</span><a class="list-button">&nbsp;&nbsp;&nbsp;&nbsp;</a>
-          </h2>
-          <ul class="album_list">
-            <li @click="selectItem(item)" v-for="(item, index) in discList" v-if="index<=5" class="item">
-              <div class="album_list_box">
-                <div class="icon">
-                  <img class="album_img" v-lazy="item.imgurl">
-                  <h3 class="desc" v-html="item.dissname"></h3>
+  <transition name="slideTab">
+    <div class="recommend" ref="recommend">
+      <scroll ref="scroll" class="recommend-content" :data="discList">
+        <div>
+          <div v-if="recommends.length" class="slider-wrapper">
+            <div class="slider-content">
+              <slider ref="slider">
+                <div v-for="item in recommends">
+                  <a :href="item.linkUrl">
+                    <img class="needsclick" @load="loadImage" :src="item.picUrl">
+                  </a>
                 </div>
+              </slider>
+            </div>
+          </div>
+          <div class="ic-guroup">
+            <div class="ic-guroup-row">
+              <div class="ic-item">
+                <div class="ic-item-container"><i class="micon geshou"></i><span class="ic-font">歌手</span></div>
               </div>
-            </li>
-          </ul>
+              <div class="ic-item">
+                <div class="ic-item-container"><i class="micon paihang"></i><span class="ic-font">排行</span></div>
+              </div>
+              <div class="ic-item">
+                <div class="ic-item-container"><i class="micon diantai"></i><span class="ic-font">电台</span></div>
+              </div>
+            </div>
+            <div class="ic-guroup-row">
+              <div class="ic-item">
+                <div class="ic-item-container"><i class="micon fenlei"></i><span class="ic-font">分类歌单</span></div>
+              </div>
+              <div class="ic-item">
+                <div class="ic-item-container"><i class="micon shipin"></i><span class="ic-font">视频MV</span></div>
+              </div>
+              <div class="ic-item">
+                <div class="ic-item-container"><i class="micon zhuanji"></i><span class="ic-font">数字专辑</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="recommend-list">
+            <h2 class="list-title"><span class="list-title-text">热门推荐</span><a class="list-button">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            </h2>
+            <ul class="album_list">
+              <li @click="selectItem(item)" v-for="(item, index) in discList" v-if="index<=5" class="item">
+                <div class="album_list_box">
+                  <div class="icon">
+                    <img class="album_img" v-lazy="item.imgurl">
+                    <h3 class="desc" v-html="item.dissname"></h3>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="loading-container" v-show="!discList.length">
-        <loading></loading>
-      </div>
-    </scroll>
-    <router-view></router-view>
-  </div>
+        <div class="loading-container" v-show="!discList.length">
+          <loading></loading>
+        </div>
+      </scroll>
+      <router-view></router-view>
+    </div>
+  </transition>
 </template>
 
 <script type="text/ecmascript-6">
@@ -125,7 +139,11 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
+  .slideTab-enter-active, .slideTab-leave-active
+    transition: all 0.3s
 
+  .slideTab-enter, .slideTab-leave-to
+    transform: translate3d(100%, 0, 0)
   .recommend
     position fixed
     width 100%
