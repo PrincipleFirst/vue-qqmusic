@@ -1,16 +1,16 @@
 <template>
   <div class="m-header">
     <div class="tab" id="tab">
-      <router-link tag="div" class="tab-item" to="/singer">
-        <div class="tab-animation"></div>
+      <router-link v-on:click.native="changeIndex(1,'singerTab')" tag="div" class="tab-item" to="/singer">
+        <div id="singerTab" :style="{marginLeft:currentLeft}"></div>
         <span class="tab-link">我的</span>
       </router-link>
-      <router-link tag="div" class="tab-item" to="/recommend">
-        <div class="tab-animation"></div>
+      <router-link v-on:click.native="changeIndex(2,'recommendTab')" tag="div" class="tab-item" to="/recommend">
+        <div id="recommendTab" :style="{marginLeft:currentLeft}"></div>
         <span class="tab-link">音乐馆</span>
       </router-link>
-      <router-link tag="div" class="tab-item" to="/rank">
-        <div class="tab-animation"></div>
+      <router-link v-on:click.native="changeIndex(3,'rankTab')" tag="div" class="tab-item" to="/rank">
+        <div id="rankTab" :style="{marginLeft:currentLeft}"></div>
         <span class="tab-link">发现</span>
       </router-link>
     </div>
@@ -27,7 +27,7 @@
   export default {
     data() {
       return {
-        currentIndex: 0
+        currentLeft: null
       }
     },
     mounted () {
@@ -36,16 +36,15 @@
       }, 20)
     },
     methods: {
+      changeIndex (index, id) {
+        document.getElementById(id).classList.add('tabAnimation')
+        setTimeout(() => {
+          document.getElementById(id).classList.remove('tabAnimation')
+        }, 400)
+      },
       test () {
         let el = document.getElementById('tab')
-        let diameter = Math.floor(el.clientWidth / 3)
-        let tabItems = el.getElementsByClassName('tab-animation')
-        var forEach = Array.prototype.forEach
-        forEach.call(tabItems, function (item) {
-          item.style.width = `${diameter}px`
-          item.style.height = `${diameter}px`
-          item.style.top = `-${diameter / 2 - 22}px`
-        })
+        this.currentLeft = `${Math.floor(el.clientWidth / 3) / 2 - 47}px`
       }
     }
   }
@@ -70,6 +69,7 @@
       line-height 44px
       font-size $font-size-medium
       .tab-item
+        position relative
         flex 1
         text-align center
         .tab-link
@@ -100,10 +100,23 @@
           letter-spacing 2px
           font-size $font-size-medium-x
           color $color-theme
-
-  .tab-animation
+  .tabAnimation
     position absolute
+    top -25px
+    height 94px
+    width 94px
     border-radius 50%
     background rgb(41, 177, 108)
-    transition all .4s linear
+    animation-name ball
+    animation-duration .4s
+    animation-iteration-count 1
+
+    @keyframes ball {
+      from {
+        transform scale(0)
+      }
+      to {
+        transform scale(1)
+      }
+    }
 </style>
