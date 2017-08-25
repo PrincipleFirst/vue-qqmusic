@@ -1,15 +1,15 @@
 <template>
   <div class="m-header">
     <div class="tab" id="tab">
-      <router-link v-on:click.native="changeIndex(1,'singerTab')" tag="div" class="tab-item" to="/singer">
+      <router-link v-on:click.native="changeIndex('singerTab')" tag="div" class="tab-item" to="/singer">
         <div id="singerTab" :style="{marginLeft:currentLeft}"></div>
         <span class="tab-link">我的</span>
       </router-link>
-      <router-link v-on:click.native="changeIndex(2,'recommendTab')" tag="div" class="tab-item" to="/recommend">
+      <router-link v-on:click.native="changeIndex('recommendTab')" tag="div" class="tab-item" to="/recommend">
         <div id="recommendTab" :style="{marginLeft:currentLeft}"></div>
         <span class="tab-link">音乐馆</span>
       </router-link>
-      <router-link v-on:click.native="changeIndex(3,'rankTab')" tag="div" class="tab-item" to="/rank">
+      <router-link v-on:click.native="changeIndex('rankTab')" tag="div" class="tab-item" to="/rank">
         <div id="rankTab" :style="{marginLeft:currentLeft}"></div>
         <span class="tab-link">发现</span>
       </router-link>
@@ -36,7 +36,7 @@
       }, 20)
     },
     methods: {
-      changeIndex (index, id) {
+      changeIndex (id) {
         document.getElementById(id).classList.add('tabAnimation')
         setTimeout(() => {
           document.getElementById(id).classList.remove('tabAnimation')
