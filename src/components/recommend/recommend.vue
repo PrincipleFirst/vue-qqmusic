@@ -221,7 +221,7 @@
             vertical-align middle
             .ic-item-container
               display inline-block
-              width 91px
+              width 90px
               text-align left
               .micon
                 display inline-block
@@ -241,6 +241,6 @@
                 &.zhuanji
                   iconImg('zhuanji.png')
               .ic-font
-                margin-left 7px
+                margin-left 6px
                 color $color-text
 </style>
