@@ -75,12 +75,10 @@
         .tab-link
           position relative
           color $color-theme
-          z-index 11
         &.router-link-active
           .tab-link
             color $color-theme
             font-size $font-size-large
-            z-index 11
     .search-box
       position relative
       margin 0 8px
