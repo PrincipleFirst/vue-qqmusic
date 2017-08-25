@@ -32,7 +32,7 @@
     },
     mounted () {
       setTimeout(() => {
-        this.test()
+        this.getBallLeft()
       }, 20)
     },
     methods: {
@@ -42,7 +42,7 @@
           document.getElementById(id).classList.remove('tabAnimation')
         }, 400)
       },
-      test () {
+      getBallLeft () {
         let el = document.getElementById('tab')
         this.currentLeft = `${Math.floor(el.clientWidth / 3) / 2 - 47}px`
       }
