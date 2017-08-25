@@ -15,14 +15,14 @@
         </div>
         <div class="ic-guroup">
           <div class="ic-guroup-row">
-            <div class="ic-item"><i class="micon geshou"></i><span class="ic-font">歌手</span></div>
-            <div class="ic-item"><i class="micon paihang"></i><span class="ic-font">排行</span></div>
-            <div class="ic-item"><i class="micon diantai"></i><span class="ic-font">电台</span></div>
+            <div class="ic-item"><div class="ic-item-container"><i class="micon geshou"></i><span class="ic-font">歌手</span></div></div>
+            <div class="ic-item"><div class="ic-item-container"><i class="micon paihang"></i><span class="ic-font">排行</span></div></div>
+            <div class="ic-item"><div class="ic-item-container"><i class="micon diantai"></i><span class="ic-font">电台</span></div></div>
           </div>
           <div class="ic-guroup-row">
-            <div class="ic-item"><i class="micon fenlei"></i><span class="ic-font">分类歌单</span></div>
-            <div class="ic-item"><i class="micon shipin"></i><span class="ic-font">视频MV</span></div>
-            <div class="ic-item"><i class="micon zhuanji"></i><span class="ic-font">数字专辑</span></div>
+            <div class="ic-item"><div class="ic-item-container"><i class="micon fenlei"></i><span class="ic-font">分类歌单</span></div></div>
+            <div class="ic-item"><div class="ic-item-container"><i class="micon shipin"></i><span class="ic-font">视频MV</span></div></div>
+            <div class="ic-item"><div class="ic-item-container"><i class="micon zhuanji"></i><span class="ic-font">数字专辑</span></div></div>
           </div>
         </div>
         <div class="recommend-list">
@@ -211,33 +211,36 @@
         display table
         width 100%
         height 136px
-        /*padding-left 6px*/
+        text-align center
         .ic-guroup-row
           display table-row
           font-size $font-size-medium
           height 68px
           .ic-item
             display table-cell
-            padding-left 15px
             vertical-align middle
-            .micon
+            .ic-item-container
               display inline-block
-              vertical-align middle
-              width 28px
-              height 28px
-              &.geshou
-                iconImg('geshou.png')
-              &.paihang
-                iconImg('paihang.png')
-              &.diantai
-                iconImg('diantai.png')
-              &.fenlei
-                iconImg('fenlei.png')
-              &.shipin
-                iconImg('shipin.png')
-              &.zhuanji
-                iconImg('zhuanji.png')
-            .ic-font
-              margin-left 7px
-              color $color-text
+              width 91px
+              text-align left
+              .micon
+                display inline-block
+                vertical-align middle
+                width 28px
+                height 28px
+                &.geshou
+                  iconImg('geshou.png')
+                &.paihang
+                  iconImg('paihang.png')
+                &.diantai
+                  iconImg('diantai.png')
+                &.fenlei
+                  iconImg('fenlei.png')
+                &.shipin
+                  iconImg('shipin.png')
+                &.zhuanji
+                  iconImg('zhuanji.png')
+              .ic-font
+                margin-left 7px
+                color $color-text
 </style>
