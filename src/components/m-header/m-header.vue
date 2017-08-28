@@ -15,7 +15,7 @@
       </router-link>
     </div>
     <div class="search-box">
-      <router-link tag="div" class="search" to="/search">
+      <router-link v-on:click.native="toSearch()"  tag="div" class="search" to="/search">
         <i class="icon-search"></i>
         <span class="search-font">搜索</span>
       </router-link>
@@ -45,6 +45,9 @@
       getBallLeft () {
         let el = document.getElementById('tab')
         this.currentLeft = `${Math.floor(el.clientWidth / 3) / 2 - 47}px`
+      },
+      toSearch () {
+        console.log(444)
       }
     }
   }
@@ -83,6 +86,7 @@
       position relative
       margin 0 8px
       .search
+        position relative
         display flex
         justify-content center
         align-items center
