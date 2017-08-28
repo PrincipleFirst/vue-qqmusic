@@ -1,5 +1,5 @@
 <template>
-  <div class="m-header">
+  <div class="m-header" ref="header">
     <div class="tab" id="tab">
       <router-link v-on:click.native="changeIndex('singerTab')" tag="div" class="tab-item" to="/singer">
         <div id="singerTab" :style="{marginLeft:currentLeft}"></div>
@@ -14,7 +14,7 @@
         <span class="tab-link">发现</span>
       </router-link>
     </div>
-    <div class="search-box">
+    <div class="search-box" ref="searchBox">
       <router-link v-on:click.native="toSearch()"  tag="div" class="search" to="/search">
         <i class="icon-search"></i>
         <span class="search-font">搜索</span>
@@ -47,6 +47,7 @@
         this.currentLeft = `${Math.floor(el.clientWidth / 3) / 2 - 47}px`
       },
       toSearch () {
+        this.$refs.header.classList.add('topBar-move-up')
         console.log(444)
       }
     }
@@ -83,10 +84,8 @@
             color $color-theme
             font-size $font-size-large
     .search-box
-      position relative
       margin 0 8px
       .search
-        position relative
         display flex
         justify-content center
         align-items center
@@ -121,4 +120,17 @@
         transform scale(1)
       }
     }
+  .topBar-move-up
+    animation-name tmu
+    animation-duration 1s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+  @keyframes tmu {
+    from {
+    }
+    to {
+      transform: translate3d(0, -44px, 0)
+    }
+  }
 </style>

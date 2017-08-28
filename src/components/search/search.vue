@@ -1,36 +1,34 @@
 <template>
-  <transition name="slide">
-    <div class="search">
-      <div ref="shortcutWrapper" class="shortcut-wrapper" v-show="!query">
-        <scroll :refreshDelay="refreshDelay" ref="shortcut" class="shortcut" :data="shortcut">
-          <div>
-            <div class="hot-key">
-              <h1 class="title">热门搜索</h1>
-              <ul>
-                <li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
-                  <span>{{item.k}}</span>
-                </li>
-              </ul>
-            </div>
-            <div class="search-history" v-show="searchHistory.length">
-              <h1 class="title">
-                <span class="text">搜索历史</span>
-                <span @click="showConfirm" class="clear">
+  <div class="search">
+    <div ref="shortcutWrapper" class="shortcut-wrapper" v-show="!query">
+      <scroll :refreshDelay="refreshDelay" ref="shortcut" class="shortcut" :data="shortcut">
+        <div>
+          <div class="hot-key">
+            <h1 class="title">热门搜索</h1>
+            <ul>
+              <li @click="addQuery(item.k)" class="item" v-for="item in hotKey">
+                <span>{{item.k}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="search-history" v-show="searchHistory.length">
+            <h1 class="title">
+              <span class="text">搜索历史</span>
+              <span @click="showConfirm" class="clear">
                 <i class="icon-clear"></i>
               </span>
-              </h1>
-              <search-list @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-list>
-            </div>
+            </h1>
+            <search-list @delete="deleteSearchHistory" @select="addQuery" :searches="searchHistory"></search-list>
           </div>
-        </scroll>
-      </div>
-      <div class="search-result" v-show="query" ref="searchResult">
-        <suggest @listScroll="blurInput" @select="saveSearch" ref="suggest" :query="query"></suggest>
-      </div>
-      <confirm ref="confirm" @confirm="clearSearchHistory" text="是否清空所有搜索历史" confirmBtnText="清空"></confirm>
-      <router-view></router-view>
+        </div>
+      </scroll>
     </div>
-  </transition>
+    <div class="search-result" v-show="query" ref="searchResult">
+      <suggest @listScroll="blurInput" @select="saveSearch" ref="suggest" :query="query"></suggest>
+    </div>
+    <confirm ref="confirm" @confirm="clearSearchHistory" text="是否清空所有搜索历史" confirmBtnText="清空"></confirm>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -106,15 +104,11 @@
 
   .search
     position fixed
-    top 0
+    top 44px
     bottom 0
     z-index 100
     width 100%
     background $color-background
-    &.slide-enter-active, &.slide-leave-active
-      transition all 0.3s
-    &.slide-enter, &.slide-leave-to
-      transform translate3d(100%, 0, 0)
     .shortcut-wrapper
       position fixed
       top 178px
@@ -136,7 +130,7 @@
             height 30px
             line-height 30px
             color #000
-            border 1px solid rgba(0,0,0,.6)
+            border 1px solid rgba(0, 0, 0, .6)
             border-radius 99px
             word-break keep-all
             margin-bottom 10px
