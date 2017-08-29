@@ -14,21 +14,22 @@
         <span class="tab-link">发现</span>
       </router-link>
     </div>
-    <div class="headerBar">
-      <div class="fallBack">
+    <div class="headerBar" :class="{leftAnimation:showFlag}" :style="{width:headerBarWidth}">
+      <div class="fallBack" @click="back" ref="fallBack">
         <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
           <path
             d="M275.2 448l166.4-166.4c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L153.6 480l249.6 249.6c12.8 12.8 32 12.8 44.8 0s12.8-32 0-44.8L275.2 512H832c19.2 0 32-12.8 32-32 0-12.8-12.8-32-32-32H275.2z"
             fill="#ffffff"></path>
         </svg>
       </div>
-      <div class="search-box" ref="searchBox">
-        <router-link v-on:click.native="toSearch()" tag="div" class="search" to="/search">
+      <div class="search-box">
+        <div @click="toSearch()" class="search" :style="{width:searchWidth}" v-show="showFlag">
           <i class="icon-search"></i>
           <span class="search-font">搜索</span>
-        </router-link>
+        </div>
+        <input type="text" class="searchInput" style="width: 338px;height: 25px" v-show="!showFlag">
       </div>
-      <div class="maike">
+      <div class="maike" ref="maike">
         <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
           <path
             d="M512 703.6928c123.4944 0 223.8464-100.4544 223.8464-223.8464v-256C735.8464 100.4544 635.4944 0 512 0S288.1536 100.4544 288.1536 223.8464v255.8976c0 123.4944 100.352 223.9488 223.8464 223.9488z m383.7952-223.9488h-64c0 176.3328-143.4624 319.7952-319.7952 319.7952-176.3328 0-319.7952-143.4624-319.7952-319.7952h-64c0 200.8064 155.136 365.8752 351.8464 382.1568v97.0752H376.9344c-1.7408 0-3.3792 0.2048-4.9152 0.512-13.9264 2.3552-24.6784 14.5408-24.6784 29.184v5.632c0 14.6432 10.752 26.8288 24.6784 29.184 1.6384 0.3072 3.2768 0.512 4.9152 0.512h270.0288c1.7408 0 3.3792-0.2048 4.9152-0.512 13.9264-2.3552 24.6784-14.5408 24.6784-29.184v-5.632c0-14.6432-10.752-26.8288-24.6784-29.184-1.6384-0.3072-3.2768-0.512-4.9152-0.512H543.9488v-97.0752c196.7104-16.2816 351.8464-181.3504 351.8464-382.1568z"
@@ -43,7 +44,10 @@
   export default {
     data() {
       return {
-        currentLeft: null
+        headerBarWidth: null,
+        searchWidth: null,
+        currentLeft: null,
+        showFlag: true
       }
     },
     mounted () {
@@ -52,6 +56,13 @@
       }, 20)
     },
     methods: {
+      triggerSwitch() {
+        if (this.showFlag) {
+          this.showFlag = false
+        } else {
+          this.showFlag = true
+        }
+      },
       changeIndex (id) {
         document.getElementById(id).classList.add('tabAnimation')
         setTimeout(() => {
@@ -59,12 +70,20 @@
         }, 400)
       },
       getBallLeft () {
+        this.headerBarWidth = `${window.screen.width + 76}px`
+        this.searchWidth = `${window.screen.width - 16}px`
         let el = document.getElementById('tab')
         this.currentLeft = `${Math.floor(el.clientWidth / 3) / 2 - 47}px`
       },
       toSearch () {
+        this.triggerSwitch()
+        this.$router.push({path: '/search'})
         this.$refs.header.classList.add('topBar-move-up')
-        console.log(444)
+      },
+      back() {
+        this.$router.back()
+        this.$refs.header.classList.remove('topBar-move-up')
+        this.triggerSwitch()
       }
     }
   }
@@ -76,7 +95,7 @@
 
   .m-header
     position relative
-    height 80px
+    height 75px
     text-align center
     color $color-theme
     background $color-theme-background
@@ -134,23 +153,26 @@
   }
   .headerBar
     display flex
-    justify-content center
-    align-items center
-    height 40px
-    line-height 40px
+    height 35px
+    line-height 35px
     .fallBack
       width 30px
       height 30px
+      margin-top 5px
+      transition all 1s
     .maike
       display flex
       justify-content center
       align-items center
       width 30px
       height 30px
+      margin-top 5px
+      transition all 1s
     .search-box
       margin 0 8px
       .search
         display flex
+        position inherit
         justify-content center
         align-items center
         box-sizing border-box
@@ -165,4 +187,15 @@
           letter-spacing 2px
           font-size $font-size-medium-x
           color $color-theme
+      .searchInput
+        -webkit-appearance none
+        background transparent
+        border none
+        color white
+        font inherit
+        outline none
+        position relative
+        width 100%
+  .leftAnimation
+    transform translate3d(-30px, 0, 0)
 </style>
