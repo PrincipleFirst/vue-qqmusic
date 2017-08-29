@@ -200,7 +200,7 @@
     height 30px
     left -30px
     top 42px
-    transition: all .4s
+    transition: all .3s
   .maike
     position fixed
     display flex
@@ -210,5 +210,5 @@
     height 30px
     right -30px
     top 42px
-    transition: all .4s
+    transition: all .3s
 </style>
