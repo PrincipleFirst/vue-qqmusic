@@ -156,7 +156,7 @@
     from {
     }
     to {
-      transform: translate3d(0, -44px, 0)
+      transform: translate3d(0, -40px, 0)
     }
   }
   .headerBar
@@ -176,6 +176,7 @@
         width 100%
         height 30px
         background #29b16c
+        transition: all .3s
         .icon-search
           font-size 24px
           color $color-theme
@@ -192,12 +193,13 @@
         outline none
         position relative
         width 100%
+        transition: all .3s
   .fallBack
     position fixed
     width 30px
     height 30px
     left -30px
-    top 45px
+    top 42px
     transition: all .4s
   .maike
     position fixed
@@ -207,6 +209,6 @@
     width 30px
     height 30px
     right -30px
-    top 45px
+    top 42px
     transition: all .4s
 </style>
