@@ -104,23 +104,24 @@
 
   .search
     position fixed
-    top 44px
+    top 35px
     bottom 0
     z-index 100
     width 100%
     background $color-background
     .shortcut-wrapper
       position fixed
-      top 178px
+      top 35px
       bottom 0
       width 100%
       .shortcut
         height 100%
         overflow hidden
         .hot-key
-          margin 0 20px 20px 20px
+          padding 15px 15px 10px 15px
           .title
             margin-bottom 8px
+            font-weight bold
             font-size $font-size-medium
             color $color-text-l
           .item
