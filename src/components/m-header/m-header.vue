@@ -34,8 +34,8 @@
           <i class="icon-search"></i>
           <span class="search-font">搜索</span>
         </div>
+        <input type="text" class="searchInput" placeholder="搜索" style="display: none">
       </div>
-      <input type="text" class="searchInput" style="width: 338px;height: 25px;display: none">
     </div>
   </div>
 </template>
@@ -177,14 +177,14 @@
           font-size $font-size-medium-x
           color $color-theme
       .searchInput
-        -webkit-appearance none
-        background transparent
-        border none
-        color white
-        font inherit
-        outline none
         position relative
-        width 100%
+        height: 20px;
+        line-height: 20px;
+        width: 100%;
+        color: rgba(0,0,0,.3);
+        border: none;
+        -webkit-appearance: textfield;
+        font-size: 14px;
         transition: all .3s
   .fallBack
     position fixed
