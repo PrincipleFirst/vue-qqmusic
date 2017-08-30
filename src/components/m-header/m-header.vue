@@ -29,13 +29,13 @@
       </router-link>
     </div>
     <div class="headerBar">
-      <div class="search-box">
-        <div @click="toSearch()" class="search" :style="{width:searchWidth}" v-show="showFlag">
+      <div class="search-box" ref="searchBox">
+        <div @click="toSearch()" class="search">
           <i class="icon-search"></i>
           <span class="search-font">搜索</span>
         </div>
-        <input type="text" class="searchInput" style="width: 338px;height: 25px" v-show="!showFlag">
       </div>
+      <input type="text" class="searchInput" style="width: 338px;height: 25px;display: none">
     </div>
   </div>
 </template>
@@ -78,6 +78,8 @@
       toSearch () {
         this.$router.push({path: '/search'})
         this.$refs.header.classList.add('topBar-move-up')
+        this.$refs.searchBox.classList.remove('searchAppear')
+        this.$refs.searchBox.classList.add('searchDisappear')
         this.triggerSwitch()
         setTimeout(() => {
           this.$refs.fallBack.style.left = '0px'
@@ -91,6 +93,8 @@
         this.triggerSwitch()
         setTimeout(() => {
           this.$refs.header.classList.remove('topBar-move-up')
+          this.$refs.searchBox.classList.remove('searchDisappear')
+          this.$refs.searchBox.classList.add('searchAppear')
         }, 400)
       }
     }
@@ -165,6 +169,7 @@
     height 35px
     line-height 35px
     .search-box
+      width 100%
       margin 0 8px
       .search
         display flex
@@ -211,4 +216,36 @@
     right -30px
     top 42px
     transition: all .3s
+  .searchDisappear
+    animation-name sd
+    animation-duration .6s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+  @keyframes sd {
+    from {
+      opacity 1
+      width 100%
+    }
+    to {
+      opacity 0
+      width 60%
+    }
+  }
+  .searchAppear
+    animation-name sa
+    animation-duration .6s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+  @keyframes sa {
+    from {
+      opacity 0
+      width 60%
+    }
+    to {
+      opacity 1
+      width 100%
+    }
+  }
 </style>

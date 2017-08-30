@@ -164,6 +164,7 @@
   @import "~common/stylus/variable"
 
   .slider
+    position relative
     min-height: 1px
     .slider-group
       position: relative
