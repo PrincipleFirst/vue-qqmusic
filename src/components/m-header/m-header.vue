@@ -45,9 +45,7 @@
     data() {
       return {
         headerBarWidth: null,
-        searchWidth: null,
-        currentLeft: null,
-        showFlag: true
+        currentLeft: null
       }
     },
     mounted () {
@@ -56,13 +54,6 @@
       }, 20)
     },
     methods: {
-      triggerSwitch() {
-        if (this.showFlag) {
-          this.showFlag = false
-        } else {
-          this.showFlag = true
-        }
-      },
       changeIndex (id) {
         document.getElementById(id).classList.add('tabAnimation')
         setTimeout(() => {
@@ -70,8 +61,6 @@
         }, 400)
       },
       getBallLeft () {
-        this.headerBarWidth = `${window.screen.width + 76}px`
-        this.searchWidth = `${window.screen.width - 16}px`
         let el = document.getElementById('tab')
         this.currentLeft = `${Math.floor(el.clientWidth / 3) / 2 - 47}px`
       },
@@ -80,21 +69,19 @@
         this.$refs.header.classList.add('topBar-move-up')
         this.$refs.searchBox.classList.remove('searchAppear')
         this.$refs.searchBox.classList.add('searchDisappear')
-        this.triggerSwitch()
         setTimeout(() => {
           this.$refs.fallBack.style.left = '0px'
           this.$refs.maike.style.right = '0px'
         }, 400)
       },
       back() {
-        this.$router.back()
         this.$refs.fallBack.style.left = '-30px'
         this.$refs.maike.style.right = '-30px'
-        this.triggerSwitch()
         setTimeout(() => {
           this.$refs.header.classList.remove('topBar-move-up')
           this.$refs.searchBox.classList.remove('searchDisappear')
           this.$refs.searchBox.classList.add('searchAppear')
+          this.$router.back()
         }, 400)
       }
     }
