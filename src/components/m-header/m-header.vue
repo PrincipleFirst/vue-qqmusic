@@ -7,6 +7,7 @@
           fill="#ffffff"></path>
       </svg>
     </div>
+    <input type="text" class="searchInput" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
     <div class="maike" ref="maike">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
         <path
@@ -34,7 +35,6 @@
           <i class="icon-search"></i>
           <span class="search-font">搜索</span>
         </div>
-        <input type="text" class="searchInput" placeholder="搜索" style="display: none">
       </div>
     </div>
   </div>
@@ -72,6 +72,7 @@
         setTimeout(() => {
           this.$refs.fallBack.style.left = '0px'
           this.$refs.maike.style.right = '0px'
+          this.$refs.searchInput.focus()
         }, 400)
       },
       back() {
@@ -94,7 +95,7 @@
 
   .m-header
     position relative
-    height 75px
+    height 77px
     text-align center
     color $color-theme
     background $color-theme-background
@@ -176,22 +177,12 @@
           letter-spacing 2px
           font-size $font-size-medium-x
           color $color-theme
-      .searchInput
-        position relative
-        height: 20px;
-        line-height: 20px;
-        width: 100%;
-        color: rgba(0,0,0,.3);
-        border: none;
-        -webkit-appearance: textfield;
-        font-size: 14px;
-        transition: all .3s
   .fallBack
     position fixed
     width 30px
     height 30px
     left -30px
-    top 42px
+    top 44px
     transition: all .3s
   .maike
     position fixed
@@ -201,8 +192,23 @@
     width 30px
     height 30px
     right -30px
-    top 42px
+    top 44px
     transition: all .3s
+  .searchInput
+    position fixed
+    top 49px
+    left 30px
+    height 20px
+    line-height 20px
+    width 80%
+    color #ffffff
+    background transparent
+    border none
+    -webkit-appearance textfield
+    font-size 14px
+    transition all .3s
+    &::-webkit-input-placeholder
+      color rgba(255,255,255,.6)
   .searchDisappear
     animation-name sd
     animation-duration .6s

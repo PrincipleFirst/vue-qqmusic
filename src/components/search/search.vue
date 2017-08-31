@@ -104,7 +104,7 @@
 
   .search
     position fixed
-    top 35px
+    top 37px
     bottom 0
     z-index 100
     width 100%

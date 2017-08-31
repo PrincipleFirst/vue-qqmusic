@@ -147,7 +147,7 @@
   .recommend
     position fixed
     width 100%
-    top 75px
+    top 77px
     bottom 0
     .recommend-content
       height 100%
