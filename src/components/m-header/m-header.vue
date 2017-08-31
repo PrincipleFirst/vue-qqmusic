@@ -44,7 +44,6 @@
   export default {
     data() {
       return {
-        headerBarWidth: null,
         currentLeft: null
       }
     },
@@ -72,6 +71,7 @@
         setTimeout(() => {
           this.$refs.fallBack.style.left = '0px'
           this.$refs.maike.style.right = '0px'
+          this.$refs.searchInput.style.display = 'block'
           this.$refs.searchInput.focus()
         }, 400)
       },
@@ -82,6 +82,7 @@
           this.$refs.header.classList.remove('topBar-move-up')
           this.$refs.searchBox.classList.remove('searchDisappear')
           this.$refs.searchBox.classList.add('searchAppear')
+          this.$refs.searchInput.style.display = 'none'
           this.$router.back()
         }, 400)
       }
@@ -195,6 +196,7 @@
     top 44px
     transition: all .3s
   .searchInput
+    display none
     position fixed
     top 49px
     left 30px
