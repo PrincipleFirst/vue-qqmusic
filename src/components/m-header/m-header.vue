@@ -7,7 +7,7 @@
           fill="#ffffff"></path>
       </svg>
     </div>
-    <input type="text" class="searchInput" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
+    <input type="text" class="searchInput" v-model="query" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
     <div class="maike" ref="maike">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
         <path
@@ -41,9 +41,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {debounce} from 'common/js/util'
+  import {mapMutations} from 'vuex'
+
   export default {
     data() {
       return {
+        query: '',
         currentLeft: null
       }
     },
@@ -53,6 +57,9 @@
       }, 20)
     },
     methods: {
+      ...mapMutations([
+        'SET_QUERY'
+      ]),
       changeIndex (id) {
         document.getElementById(id).classList.add('tabAnimation')
         setTimeout(() => {
@@ -85,7 +92,21 @@
           this.$refs.searchInput.style.display = 'none'
           this.$router.back()
         }, 400)
+      },
+      clear() {
+        this.query = ''
+      },
+      setQuery(query) {
+        this.query = query
+      },
+      blur() {
+        this.$refs.searchInput.blur()
       }
+    },
+    created() {
+      this.$watch('query', debounce((newQuery) => {
+        this.SET_QUERY(newQuery.trim())
+      }, 200))
     }
   }
 </script>

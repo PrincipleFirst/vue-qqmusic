@@ -4,6 +4,7 @@ import {loadSearch, loadPlay, loadFavorite} from 'common/js/cache'
 const state = {
   singer: {},
   playing: false,
+  query: '',
   fullScreen: false,
   playlist: [],
   sequenceList: [],
