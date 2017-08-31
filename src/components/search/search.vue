@@ -38,20 +38,25 @@
   import Suggest from 'components/suggest/suggest'
   import { getHotKey } from 'api/search'
   import { ERR_OK } from 'api/config'
-  import { playlistMixin, searchMixin } from 'common/js/mixin'
-  import { mapActions } from 'vuex'
+  import { playlistMixin } from 'common/js/mixin'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    mixins: [playlistMixin, searchMixin],
+    mixins: [playlistMixin],
     data () {
       return {
-        hotKey: []
+        hotKey: [],
+        refreshDelay: 120
       }
     },
     computed: {
       shortcut () {
         return this.hotKey.concat(this.searchHistory)
-      }
+      },
+      ...mapGetters([
+        'searchHistory',
+        'query'
+      ])
     },
     created () {
       this._getHotKey()
@@ -76,8 +81,19 @@
           }
         })
       },
+      blurInput() {
+//        this.$refs.searchBox.blur()
+      },
+      addQuery(query) {
+//        this.$refs.searchBox.setQuery(query)
+      },
+      saveSearch() {
+        this.saveSearchHistory(this.query)
+      },
       ...mapActions([
-        'clearSearchHistory'
+        'clearSearchHistory',
+        'saveSearchHistory',
+        'deleteSearchHistory'
       ])
     },
     watch: {
