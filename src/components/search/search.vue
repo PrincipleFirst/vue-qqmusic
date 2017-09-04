@@ -85,7 +85,6 @@
 //        this.$refs.searchBox.blur()
       },
       addQuery(query) {
-//        console.log(Object.prototype.toString.call(query))
         this.setQuery(query)
       },
       saveSearch() {
