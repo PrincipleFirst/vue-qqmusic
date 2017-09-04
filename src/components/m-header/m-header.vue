@@ -7,7 +7,7 @@
           fill="#ffffff"></path>
       </svg>
     </div>
-    <input type="text" class="searchInput" v-model="query" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
+    <input type="text" id="searchInput" class="searchInput" v-model="query" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
     <div class="maike" ref="maike">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
         <path

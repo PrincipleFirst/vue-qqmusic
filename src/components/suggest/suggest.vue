@@ -62,7 +62,6 @@
         this.$refs.suggest.refresh()
       },
       search() {
-        console.log(this.query)
         this.page = 1
         this.hasMore = true
         this.$refs.suggest.scrollTo(0, 0)

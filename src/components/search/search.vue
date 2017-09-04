@@ -85,12 +85,14 @@
 //        this.$refs.searchBox.blur()
       },
       addQuery(query) {
-//        this.$refs.searchBox.setQuery(query)
+//        console.log(Object.prototype.toString.call(query))
+        this.setQuery(query)
       },
       saveSearch() {
         this.saveSearchHistory(this.query)
       },
       ...mapActions([
+        'setQuery',
         'clearSearchHistory',
         'saveSearchHistory',
         'deleteSearchHistory'
@@ -171,6 +173,6 @@
     .search-result
       position fixed
       width 100%
-      top 178px
+      top 50px
       bottom 0
 </style>
