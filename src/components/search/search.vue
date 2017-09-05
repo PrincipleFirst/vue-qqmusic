@@ -82,7 +82,7 @@
         })
       },
       blurInput() {
-//        this.$refs.searchBox.blur()
+        document.getElementById('searchInput').blur()
       },
       addQuery(query) {
         this.setQuery(query)

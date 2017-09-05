@@ -8,6 +8,9 @@
       </svg>
     </div>
     <input type="text" id="searchInput" class="searchInput" v-model="query" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
+    <span class="icon" @click="clear" v-show="query">
+      <i class="icon-delete"></i>
+    </span>
     <div class="maike" ref="maike">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
         <path
@@ -264,4 +267,14 @@
       width 100%
     }
   }
+  .icon
+    extend-click()
+    position fixed
+    width 30px
+    height 30px
+    right 0px
+    top 44px
+    .icon-delete
+      font-size: $font-size-small
+      color: $color-text-d
 </style>
