@@ -79,7 +79,6 @@ export const insertSong = function ({commit, state}, song) {
 
 export const setQuery = function ({commit}, query) {
   let data = query.trim()
-  document.getElementById('searchInput').value = data
   saveSearch(data)
   commit(types.SET_QUERY, data)
 }

@@ -7,8 +7,8 @@
           fill="#ffffff"></path>
       </svg>
     </div>
-    <input type="text" id="searchInput" class="searchInput" v-model="query" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
-    <span class="icon" @click="clear" v-show="query">
+    <input type="text" id="searchInput" class="searchInput" v-model="inputQuery" ref="searchInput" placeholder="搜索音乐、歌词、歌单">
+    <span class="icon" @click="clear" v-show="inputQuery">
       <i class="icon-delete"></i>
     </span>
     <div class="maike" ref="maike">
@@ -45,12 +45,12 @@
 
 <script type="text/ecmascript-6">
   import {debounce} from 'common/js/util'
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapGetters} from 'vuex'
 
   export default {
     data() {
       return {
-        query: '',
+        inputQuery: '',
         currentLeft: null
       }
     },
@@ -97,17 +97,27 @@
         }, 400)
       },
       clear() {
-        this.query = ''
+        this.inputQuery = ''
       },
       setQuery(query) {
-        this.query = query
+        this.inputQuery = query
       },
       blur() {
         this.$refs.searchInput.blur()
       }
     },
+    computed: {
+      ...mapGetters([
+        'query'
+      ])
+    },
+    watch: {
+      query() {
+        this.inputQuery = this.query
+      }
+    },
     created() {
-      this.$watch('query', debounce((newQuery) => {
+      this.$watch('inputQuery', debounce((newQuery) => {
         this.SET_QUERY(newQuery.trim())
       }, 200))
     }
