@@ -11,7 +11,7 @@
     <span class="icon" @click="clear" v-show="inputQuery">
       <i class="icon-delete"></i>
     </span>
-    <div class="maike" ref="maike">
+    <div class="maike" ref="maike" v-show="!inputQuery">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
         <path
           d="M512 703.6928c123.4944 0 223.8464-100.4544 223.8464-223.8464v-256C735.8464 100.4544 635.4944 0 512 0S288.1536 100.4544 288.1536 223.8464v255.8976c0 123.4944 100.352 223.9488 223.8464 223.9488z m383.7952-223.9488h-64c0 176.3328-143.4624 319.7952-319.7952 319.7952-176.3328 0-319.7952-143.4624-319.7952-319.7952h-64c0 200.8064 155.136 365.8752 351.8464 382.1568v97.0752H376.9344c-1.7408 0-3.3792 0.2048-4.9152 0.512-13.9264 2.3552-24.6784 14.5408-24.6784 29.184v5.632c0 14.6432 10.752 26.8288 24.6784 29.184 1.6384 0.3072 3.2768 0.512 4.9152 0.512h270.0288c1.7408 0 3.3792-0.2048 4.9152-0.512 13.9264-2.3552 24.6784-14.5408 24.6784-29.184v-5.632c0-14.6432-10.752-26.8288-24.6784-29.184-1.6384-0.3072-3.2768-0.512-4.9152-0.512H543.9488v-97.0752c196.7104-16.2816 351.8464-181.3504 351.8464-382.1568z"
@@ -118,6 +118,7 @@
     },
     created() {
       this.$watch('inputQuery', debounce((newQuery) => {
+        if (this.query === this.inputQuery) return
         this.SET_QUERY(newQuery.trim())
       }, 200))
     }
@@ -283,8 +284,8 @@
     width 30px
     height 30px
     right 0px
-    top 44px
+    top 52px
     .icon-delete
-      font-size: $font-size-small
-      color: $color-text-d
+      font-size $font-size-medium
+      color $color-theme
 </style>
